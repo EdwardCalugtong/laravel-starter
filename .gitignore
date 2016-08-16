@@ -3,7 +3,7 @@
 /node_modules
 /public/storage
 /public/css
-infrastructure/nginx/default.conf
+#infrastructure/nginx/default.conf
 Homestead.yaml
 Homestead.json
 .env
