@@ -6,7 +6,7 @@ LABEL com.realpage.nginx.version="1.11"
 COPY ./public /var/www/html/public
 
 # add vhost config
-COPY ./infrastructure/nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY ./infrastructure/nginx/default.conf.template /etc/nginx/conf.d/default.conf.template
 
 # give nginx permission to serve
 RUN chown -R nginx:nginx /var/www/html/public
