@@ -3,10 +3,10 @@ MAINTAINER Foundation DevOps foundation-devops@realpage.com
 LABEL com.realpage.nginx.version="1.11"
 
 # add the application to the container
-COPY ./public /var/www/html/public
+ADD ./public /var/www/html/public
 
 # add vhost config
-COPY ./infrastructure/nginx/default.conf.template /etc/nginx/conf.d/default.conf.template
+ADD ./infrastructure/nginx/default.conf.template /etc/nginx/conf.d/default.conf.template
 
 # give nginx permission to serve
 RUN chown -R nginx:nginx /var/www/html/public
