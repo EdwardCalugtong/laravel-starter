@@ -7,6 +7,10 @@ before_install:
   - cp .env.example .env
   # Stop the postgres instance travis sets up automatically
   - sudo /etc/init.d/postgresql stop
+  # Build assets
+  - npm install
+  - npm install -g gulp
+  - gulp --production
   # set env vars in the build settings to interact with repositories
   # see https://docs.travis-ci.com/user/environment-variables/#Defining-Variables-in-Repository-Settings
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"

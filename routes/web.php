@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ['as' => 'home', 'uses' => 'HomeController@startup']);
 
 /**
  * Healthcheck to ensure the application is healthy.  When deployed this endpoint will determine healthy nodes

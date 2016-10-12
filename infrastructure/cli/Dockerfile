@@ -1,7 +1,7 @@
 # This container should be used for any/all CLI processes
 # including cron, queues, etc.
-FROM realpage/php:7.0-alpine
-LABEL application="laravel" \
+FROM realpage/php:7.0-cli
+LABEL application="laravel-cli" \
       com.realpage.php.version="7.0" \
       com.realpage.php.type="cli"
 
@@ -11,31 +11,18 @@ ADD . /var/www/html
 WORKDIR /var/www/html
 
 # Install Composer dependencies
-RUN apk add --update --no-cache git zip unzip \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get update && apt-get install -y git zip unzip \
+    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install Composer
 RUN php /var/www/html/infrastructure/install_composer.php
-
-# Ownership of the app dir for www-data
-RUN chown -R www-data:www-data /var/www/html
-
-# Put php artisan schedule:run in a crontab
-RUN echo "*       *       *       *       *       php /var/www/html/artisan schedule:run" > /etc/crontabs/www-data
-
-# Run composer as www-data
-USER www-data
-
 # parallel dependency installation
 RUN composer global require hirak/prestissimo \
     # production-ready dependencies
-    && composer install  --no-interaction --optimize-autoloader --no-dev --prefer-dist
+    && composer install  --no-interaction --no-dev --prefer-dist \
 
-# Switch back to root
-USER root
+    # give the keys to www-data
+    && chown -R www-data:www-data .
 
 # Remove composer installation dependencies
-RUN apk del libmcrypt git zip unzip
-
-# Make sure when users get into the container they aren't root
-USER www-data
+RUN apt-get remove git zip unzip

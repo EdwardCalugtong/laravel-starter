@@ -1,0 +1,51 @@
+// Variables
+@import 'variables';
+
+// Media Query Styles
+//*==========  Mobile First Media Queries  ==========*/
+
+//* The Bootstrap "sm" Snap Point, Mobile Devices */
+@media only screen and (min-width: 480px) {
+
+}
+
+@media only screen and (min-width: 648px) {
+
+}
+
+//* The Bootstrap "md" Snap Point, Mobile Devices */
+@media only screen and (min-width: 769px) {
+
+}
+
+//* The Bootstrap "lg" Snap Point, Tablet and Small Desktop Screen Devices */
+@media only screen and (min-width: 992px) {
+
+}
+
+//* The Bootstrap "xl" Snap Point, Large Desktop Devices */
+@media only screen and (min-width: 1200px) {
+
+}
+
+//*==========  Non-Mobile First Media Queries  ==========*/
+
+//* Large Devices, Wide Screens */
+@media only screen and (max-width: 1200px) {
+
+}
+
+//* Medium Devices, Desktops */
+@media only screen and (max-width: 992px) {
+
+}
+
+//* Small Devices, Tablets */
+@media only screen and (max-width: 768px) {
+
+}
+
+//* Extra Small Devices, Phones */
+@media only screen and (max-width: 480px) {
+
+}
