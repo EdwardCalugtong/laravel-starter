@@ -11,6 +11,13 @@ ADD ./infrastructure/nginx/default.conf.template /etc/nginx/conf.d/default.conf.
 # give nginx permission to serve
 RUN chown -R nginx:nginx /var/www/html/public
 
+RUN apk add --update --no-cache nodejs
+
+# use latest npm
+RUN npm install -g npm
+RUN npm i -g gulp && \
+    rm -rf /tmp/*
+
 WORKDIR /var/www/html
 
 # Make environment variables available in nginx config - see https://hub.docker.com/_/nginx/
