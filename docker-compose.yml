@@ -9,6 +9,8 @@ services:
     env_file: .env
     volumes:
       - ./:/var/www/html
+    links:
+      - gulp
   web:
     build:
       context: .
@@ -28,3 +30,9 @@ services:
       POSTGRES_USER: service_user
       POSTGRES_PASSWORD: P@ssw0rd
       POSTGRES_DB: service_db
+  gulp:
+    image: node:6.9
+    env_file: .env
+    volumes:
+      - ./:/var/www/html
+    command: /bin/bash -c "cd /var/www/html; npm install && npm install -g gulp && gulp watch"
