@@ -12,7 +12,7 @@ before_install:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   # Start the docker stuff
   - docker-compose -v
-  # Compile npm dependencies and production gulp assets
+  # Compile npm dependencies and production gulp assets first so the fpm container container the node modules
   - docker run --volume="$(pwd)":/var/www/html node:6.9 /bin/bash -c "cd /var/www/html; npm install && npm install -g gulp && gulp --production"
   - docker-compose up -d
   - sleep 4
